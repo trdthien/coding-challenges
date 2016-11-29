@@ -5,6 +5,8 @@ Your local electronics store has started to expand, but track their entire inven
 
 You are free to use any PHP libraries or modules in order to complete the challenge.  You may choose either MySQL/MariaDB or MongoDB as your data layer.
 
+**The challenge is to be completed using Symfony3.**
+
 #### Bonus Points
 * Use Docker to build your solution
 * Using Kahlan for your unit tests
@@ -20,7 +22,7 @@ The API should be able to:
 * delete a product
 
 #### Authentication
-Any authenticated user to create, update, or delete a product.  No authentication is required to retrieve or list.
+Any authenticated user can create, update, or delete a product.  No authentication is required to retrieve or list.
 
 #### Data
 > All entities should have timestamp fields (created_at, and modified_at)
@@ -43,7 +45,7 @@ For full transparency, the test will be scored according to the following:
 * REST Structure
 * Unit Testing
 * Logging
-* Use of services, controller, and models
+* Use of services, controllers, and models
 * Use of Symfony3 as a framework
 * Best practices
 * Reusable code
