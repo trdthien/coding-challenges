@@ -9,7 +9,7 @@ You are free to use any PHP libraries or modules in order to complete the challe
 
 #### Bonus Points
 * Use Docker to build your solution
-* Using Kahlan for your unit tests
+* Use Kahlan for your unit tests
 
 ### Requirements
 
@@ -22,7 +22,7 @@ The API should be able to:
 * delete a product
 
 #### Authentication
-Any authenticated user can create, update, or delete a product.  No authentication is required to retrieve or list.
+Only authenticated users can create, update, or delete a product.  No authentication is required to retrieve or list.
 
 #### Data
 > All entities should have timestamp fields (created_at, and modified_at)
