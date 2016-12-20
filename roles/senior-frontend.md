@@ -16,9 +16,13 @@ Please include instructions for how to build and run your solution.
 * Store the application data in a Web Storage area
 
 ### Requirements
-The application will be a single page application with the following features:
+The application will be a single page application with the following pages.
+
+#### Welcome (/welcome)
 * A welcome screen will greet the user and ask for their `first name`, `last name`, and `email address`
-  * Chekck the first and last name (they should not be empty), and that the email is valid
+  * Check the first and last name (they should not be empty), and that the email is valid
+
+#### Time Log (/time-log)
 * Once the user has entered in their information, they will be brought to a page with a dynamic header that lists the following:
   * the current date and time;
   * how many hours have been tracked; and
