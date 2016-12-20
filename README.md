@@ -8,3 +8,4 @@ Each test is not meant to be time exhaustive, but is to showcase a solid underst
 
 ## Index
  * [Senior PHP Developer](roles/senior-php.md)
+ * [Senior Frontend Developer](roles/senior-frontend.md) 
