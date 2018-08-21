@@ -5,7 +5,7 @@ Your local electronics store has started to expand, but track their entire inven
 
 You are free to use any PHP libraries or modules in order to complete the challenge.  You may choose either MySQL/MariaDB or MongoDB as your data layer.
 
-**The challenge is to be completed using Symfony3.**
+**The challenge is to be completed using Symfony4.**
 
 #### Bonus Points
 * Use Docker to build your solution
