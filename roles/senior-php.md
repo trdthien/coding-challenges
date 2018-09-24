@@ -46,7 +46,7 @@ For full transparency, the test will be scored according to the following:
 * Unit Testing
 * Logging
 * Use of services, controllers, and models
-* Use of Symfony3 as a framework
+* Use of Symfony4 as a framework
 * Best practices
 * Reusable code
 * Decoupled code
