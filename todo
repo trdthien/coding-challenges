@@ -1,0 +1,11 @@
+- dockerize infrastructures
+- require symfony 4 and components
+    - symfony 4
+    - FOSREST bundle
+    - DOCTRINE
+    - logger
+- develop
+    - write models & testing
+    - write command import data
+    - write controllers & testing
+
