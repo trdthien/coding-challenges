@@ -1,2 +1,6 @@
 # IntelliJ project files
 .idea
+.env
+/vendor/
+
+
