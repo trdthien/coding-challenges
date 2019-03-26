@@ -18,7 +18,7 @@ php:
   links:
     - db
 db:
-  image: mysql:5.7
+  image: mysql5.7
   restart: always
   environment:
     MYSQL_ROOT_PASSWORD: develop
