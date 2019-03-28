@@ -1,0 +1,39 @@
+App\Model\Category:
+  type: entity
+  table: categories
+  id:
+    id:
+      type: integer
+      length: 11
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+      nullable: false
+    created_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  manyToMany:
+    products:
+      targetEntity: Product
+      inversedBy: category
+      joinTable:
+        name: products_categories
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          category_id:
+            referencedColumnName: id
+
+
+

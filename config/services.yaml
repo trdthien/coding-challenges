@@ -26,13 +26,20 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
-    App\Repository\ProductRepositoryInterface: '@App\Repository\InMemoryProductRepository'
+    App\Repository\ProductRepositoryInterface: '@App\Repository\DoctrineProductRepository'
+    App\Repository\CategoryRepositoryInterface: '@App\Repository\DoctrineCategoryRepository'
+
+    App\Repository\DoctrineProductRepository:
+        arguments: [ "@doctrine.orm.entity_manager" ]
+    App\Repository\DoctrineCategoryRepository:
+        arguments: [ "@doctrine.orm.entity_manager" ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer:
-        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-        public: false
+    gedmo.listener.timestampable:
+        class: Gedmo\Timestampable\TimestampableListener
         tags:
-            - { name: 'serializer.normalizer' }
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]
