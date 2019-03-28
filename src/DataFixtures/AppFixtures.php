@@ -4,15 +4,24 @@ namespace App\DataFixtures;
 
 use App\Model\Money;
 use App\Model\Price;
+use App\Model\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Finder\Finder;
 use App\Model\Product;
 use App\Model\Category;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
     private $seedDirectory = '/data/seeds';
+
+    private $passwordEncoder;
+
+     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+     {
+         $this->passwordEncoder = $passwordEncoder;
+     }
 
     public function load(ObjectManager $manager)
     {
@@ -53,11 +62,14 @@ class AppFixtures extends Fixture
                         $category->setProduct($product);
                         $manager->persist($category);
 
-                    } elseif ($seedName == 'user') {
-//                        $user = new User();
-//                        $user->setUsername($crtSeed['name']);
-//                        $user->setEmail($crtSeed['email']);
-//                        $manager->persist($user);
+                    } elseif ($seedName == 'users') {
+                        $user = new User();
+                        $user->setUsername($crtSeed['email']);
+                        $user->setPassword(
+                            $this->passwordEncoder->encodePassword($user, $crtSeed['name'])
+                        );
+                        $user->setName($crtSeed['name']);
+                        $manager->persist($user);
                     }
                 }
             }

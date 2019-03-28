@@ -7,6 +7,7 @@ use App\Service\ProductUpdateRequest;
 use App\Service\ProductService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -59,6 +60,7 @@ class ProductController extends AbstractFOSRestController
      * Creates an Product resource
      * @Rest\Post("/products")
      * @param Request $request
+     * @Security("has_role('ROLE_USER')")
      * @return View
      */
     public function createProduct(Request $request)
@@ -81,6 +83,7 @@ class ProductController extends AbstractFOSRestController
      * @Rest\Put("/products/{productId}")
      * @param string $productId
      * @param Request $request
+     * @Security("has_role('ROLE_USER')")
      * @return View
      */
     public function putProduct(string $productId, Request $request)
@@ -102,11 +105,14 @@ class ProductController extends AbstractFOSRestController
     /**
      * Deletes the Product resource
      * @Rest\Delete("/products/{productId}")
+     * @Security("has_role('ROLE_ADMIN')")
      * @param string $productId
      * @return View
      */
     public function deleteProduct(string $productId)
     {
-//        return View::create($product, Response::HTTP_OK);
+        $product = $this->productService->delete($productId);
+
+        return View::create($product, Response::HTTP_OK);
     }
 }

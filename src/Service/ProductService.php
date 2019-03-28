@@ -138,7 +138,7 @@ class ProductService
      */
     public function delete(string $productId)
     {
-        $product = $this->productRepository->delete($productId);
+        $product = $this->productRepository->getById($productId);
 
         if ($product) {
             $this->productRepository->delete($product);

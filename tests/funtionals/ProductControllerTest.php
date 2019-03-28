@@ -47,6 +47,18 @@ class ProductControllerTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
+
+    public function testAnonymousUserMustNotAccessCreateProduct()
+    {
+        $response = $this->client->post('/api/products', [
+            'body' => '{}'
+        ]);
+
+        $this->assertEquals(401, $response->getStatusCode());
+    }
+
+
+
     public function testCreateProduct()
     {
         $requestData = array(
@@ -56,8 +68,13 @@ class ProductControllerTest extends TestCase
             'category' => 'something',
         );
 
+        $token = $this->createToken('bobby@foo.com', 'Bobby Fischer');
+
         $response = $this->client->post('/api/products', [
-            'body' => json_encode($requestData)
+            'body' => json_encode($requestData),
+            'headers' => [
+                'Authorization' => 'Bearer '.$token
+            ]
         ]);
 
         $this->assertEquals(201, $response->getStatusCode());
@@ -76,8 +93,13 @@ class ProductControllerTest extends TestCase
             'price' => rand(19, 99)
         );
 
+        $token = $this->createToken('bobby@foo.com', 'Bobby Fischer');
+
         $response = $this->client->post('/api/products', [
-            'body' => json_encode($requestData)
+            'body' => json_encode($requestData),
+            'headers' => [
+                'Authorization' => 'Bearer '.$token
+            ]
         ]);
 
         $data = json_decode($response->getBody(true), true);
@@ -93,12 +115,33 @@ class ProductControllerTest extends TestCase
 
         $response = $this->client->put(
             sprintf('/api/products/%s', $data['id']),
-            ['body' => json_encode($updateData)]
+            [
+                'body' => json_encode($updateData),
+                'headers' => [
+                    'Authorization' => 'Bearer '.$token
+                ]
+            ]
         );
 
         $this->assertEquals(200, $response->getStatusCode());
         $data = json_decode($response->getBody(true), true);
         $this->assertArrayHasKey('name', $data);
         $this->assertEquals($newQuantity, $updateData['quantity']);
+    }
+
+    protected function createToken($username = 'user', $password = 'password')
+    {
+        $response = $this->client->post(
+            '/api/login_check',[
+                'body' => json_encode([
+                    'username' => $username,
+                    'password' => $password
+                ])
+            ]
+        );
+
+        $data = json_decode($response->getBody(true), true);
+
+        return $data['token'];
     }
 }
