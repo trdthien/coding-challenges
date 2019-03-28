@@ -1,0 +1,29 @@
+App\Model\Price:
+  type: entity
+  table: prices
+  id:
+    id:
+      type: integer
+      length: 11
+      generator:
+        strategy: AUTO
+  fields:
+    created_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  embedded:
+    value:
+      class: Money
+
+
+
+
+
+

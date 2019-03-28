@@ -1,0 +1,52 @@
+App\Model\Product:
+  type: entity
+  table: products
+  id:
+    id:
+      type: integer
+      length: 11
+      generator:
+        strategy: AUTO
+  fields:
+    name:
+      type: string
+      length: 255
+      nullable: false
+    sku:
+      type: string
+      length: 255
+      unique: true
+      nullable: false
+    quantity:
+      type: integer
+      length: 10
+    created_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+  manyToMany:
+    categories:
+      targetEntity: Category
+      mappedBy: products
+      cascade: ["remove", "persist"]
+    prices:
+      targetEntity: Price
+      cascade: ["persist"]
+      joinTable:
+        name: products_prices
+        joinColumns:
+          product_id:
+            referencedColumnName: id
+        inverseJoinColumns:
+          price_id:
+            referencedColumnName: id
+            unique: true
+
+
+

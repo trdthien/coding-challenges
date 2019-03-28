@@ -1,0 +1,5 @@
+App\Model\Money:
+  type: embeddable
+  fields:
+    currency: { type: string, length: 5 }
+    amount: { type: integer, length: 50 }

@@ -14,7 +14,7 @@ class Money
     private $currency;
 
     /**
-     * @var int $amount
+     * @var float $amount
      */
     private $amount;
 
@@ -31,7 +31,7 @@ class Money
      * @param int $amount
      * @return Money
      */
-    public static function fromCurrencyAndAmount(string $currency, int $amount)
+    public static function fromCurrencyAndAmount(string $currency, float $amount)
     {
         $money = new self();
 

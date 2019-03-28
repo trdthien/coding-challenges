@@ -1,0 +1,35 @@
+App\Model\User:
+  type: entity
+  table: users
+  id:
+    id:
+      type: integer
+      length: 11
+      generator:
+        strategy: AUTO
+  fields:
+    username:
+      type: string
+      length: 255
+    name:
+      type: string
+      length: 255
+    password:
+      type: string
+      length: 500
+    created_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: create
+    updated_at:
+      type: datetime
+      gedmo:
+        timestampable:
+          on: update
+
+
+
+
+
+
