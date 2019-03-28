@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use App\Model\Product;
-use App\Repository\ProductRepositoryInterface;
+use App\Service\ProductCreateRequest;
+use App\Service\ProductUpdateRequest;
+use App\Service\ProductService;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,17 +18,17 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 class ProductController extends AbstractFOSRestController
 {
     /**
-     * @var ProductRepositoryInterface
+     * @var ProductService
      */
-    private $productRepository;
+    private $productService;
 
     /**
      * ProductController constructor.
-     * @param ProductRepositoryInterface $productRepository
+     * @param ProductService $productService
      */
-    public function __construct(ProductRepositoryInterface $productRepository)
+    public function __construct(ProductService $productService)
     {
-        $this->productRepository = $productRepository;
+        $this->productService = $productService;
     }
 
     /**
@@ -36,9 +37,22 @@ class ProductController extends AbstractFOSRestController
      */
     public function getProducts()
     {
-        $products = $this->productRepository->getAll();
+        $products = $this->productService->getProducts();
 
         return View::create($products, Response::HTTP_OK);
+    }
+
+    /**
+     * Retrieves a collection of Product resource
+     * @Rest\Get("/products/{productId}")
+     * @param string $productId
+     * @return View
+     */
+    public function getProduct(string $productId)
+    {
+        $product = $this->productService->getProduct($productId);
+
+        return View::create($product, Response::HTTP_OK);
     }
 
     /**
@@ -49,12 +63,15 @@ class ProductController extends AbstractFOSRestController
      */
     public function createProduct(Request $request)
     {
-        $product = new Product();
-        $product->setName($request->get('name'));
-        $product->setSku($request->get('sku'));
-        $product->setQuantity($request->get('quantity'));
-
-        $this->productRepository->create($product);
+        $product = $this->productService->create(
+            new ProductCreateRequest(
+                $request->get('name'),
+                $request->get('sku'),
+                $request->get('category'),
+                $request->get('quantity'),
+                $request->get('price')
+            )
+        );
 
         return View::create($product, Response::HTTP_CREATED);
     }
@@ -68,15 +85,16 @@ class ProductController extends AbstractFOSRestController
      */
     public function putProduct(string $productId, Request $request)
     {
-        $product = $this->productRepository->getById($productId);
-
-        if ($product) {
-            $product->setName($request->get('name'));
-            $product->setSku($request->get('sku'));
-            $product->setQuantity($request->get('quantity'));
-
-            $this->productRepository->update($product);
-        }
+        $product = $this->productService->update(
+            new ProductUpdateRequest(
+                $productId,
+                $request->get('name'),
+                $request->get('sku'),
+                $request->get('category'),
+                $request->get('quantity'),
+                $request->get('price')
+            )
+        );
 
         return View::create($product, Response::HTTP_OK);
     }
@@ -89,12 +107,6 @@ class ProductController extends AbstractFOSRestController
      */
     public function deleteProduct(string $productId)
     {
-        $product = $this->productRepository->getById($productId);
-
-        if ($product) {
-            $this->productRepository->delete($product);
-        }
-
-        return View::create($product, Response::HTTP_OK);
+//        return View::create($product, Response::HTTP_OK);
     }
 }

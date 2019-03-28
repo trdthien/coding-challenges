@@ -3,6 +3,6 @@
 namespace App\Model;
 
 
-class ProductNotExistException extends \LogicException
+class ResourceNotFoundException extends \LogicException
 {
 }

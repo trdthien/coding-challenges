@@ -17,26 +17,18 @@ class ProductTest extends TestCase
     public function testCreateProduct()
     {
         $product = new Product();
-
         $product->setId($id = 'product-id');
         $product->setName($name = 'product-name');
-        $product->setCategories(
-            $cats = [
-                (new Category())->setId('cat-1')
-            ]
+        $product->setSku($sku = '12345');
+        $prices[] = (new Price())->setValue(
+            Money::fromCurrencyAndAmount('USD', 19)
         );
 
-        $product->setSku($sku = '12345');
-        $product->setPrice(
-            $price = (new Price())->setValue(
-                Money::fromCurrencyAndAmount('USD', 19)
-            )
-        );
+        $product->setPrices($prices);
 
         $this->assertEquals($id, $product->getId());
         $this->assertEquals($name, $product->getName());
-        $this->assertEquals($cats, $product->getCategories());
         $this->assertEquals($sku, $product->getSku());
-        $this->assertEquals($price, $product->getPrice());
+        $this->assertEquals($prices, $product->getPrices());
     }
 }

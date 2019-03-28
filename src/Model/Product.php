@@ -26,13 +26,21 @@ class Product {
      */
     private $sku;
     /**
-     * @var Price $price
+     * @var $price[]
      */
-    private $price;
+    private $prices;
     /**
      * @var int $quantity
      */
     private $quantity;
+    /**
+     * @var \DateTime $created_at
+     */
+    private $created_at;
+    /**
+     * @var \DateTime $updated_at
+     */
+    private $updated_at;
 
     /**
      * @param string $id
@@ -72,11 +80,19 @@ class Product {
     }
 
     /**
-     * @param mixed $categories
+     * @param array $categories
      */
-    public function setCategories($categories)
+    public function setCategories(array $categories)
     {
-        $this->categories = $categories;
+        $this->categories[] = $categories;
+    }
+
+    /**
+     * @param Category $category
+     */
+    public function setCategory(Category $category)
+    {
+        $this->categories[] = $category;
     }
 
     /**
@@ -98,9 +114,17 @@ class Product {
     /**
      * @return mixed
      */
-    public function getPrice()
+    public function getPrices()
     {
-        return $this->price;
+        return $this->prices;
+    }
+
+    /**
+     * @param mixed $prices
+     */
+    public function setPrices($prices)
+    {
+        $this->prices = $prices;
     }
 
     /**
@@ -108,7 +132,7 @@ class Product {
      */
     public function setPrice($price)
     {
-        $this->price = $price;
+        $this->prices[] = $price;
     }
 
     /**
@@ -125,5 +149,37 @@ class Product {
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @param \DateTime $created_at
+     */
+    public function setCreatedAt(\DateTime $created_at)
+    {
+        $this->created_at = $created_at;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * @param \DateTime $updated_at
+     */
+    public function setUpdatedAt(\DateTime $updated_at)
+    {
+        $this->updated_at = $updated_at;
     }
 }
