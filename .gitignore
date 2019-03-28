@@ -1,2 +1,10 @@
 # IntelliJ project files
 .idea
+.env
+/vendor/
+/var/
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###

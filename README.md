@@ -1,11 +1,24 @@
-# TalentNet Code Challenges
+Coding Challenges
+-----------------
 
-## Thanks for your interest in working with us!
 
-Please submit your challenge as a public GitHub repository with instructions in README.md for building and seeding the challenge.  Also note any assumptions you have made.
+Installation
+-----------------
 
-Each test is not meant to be time exhaustive, but is to showcase a solid understanding of modern web application development.
+# install docker
+https://docs.docker.com/v17.09/engine/installation/#supported-platforms
 
-## Index
- * [Senior PHP Developer](roles/senior-php.md)
- * [Senior Frontend Developer](roles/senior-frontend.md) 
+# build docker's PHP7 image
+````
+$ docker build -t php71-fpm docker/php/
+````
+
+# build docker's MySQL image
+````
+$ docker build -t mysql5.7 docker/mysql
+````
+
+#run docker containers
+````
+$ docker-compose up
+````
