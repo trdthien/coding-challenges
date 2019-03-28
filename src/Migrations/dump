@@ -1,0 +1,40 @@
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'bobby@foo.com','Bobby Fischer','$2y$13$71tcwSwFphvbASgNFVNfOeVeyvoSrOn3QWCyxpF0YcaUXbJJSTj.e','2019-03-28 09:20:19','2019-03-28 09:20:19'),(2,'betty@foo.com','Betty Rubble','$2y$13$suuiqJakJNE7wugR2biq3uDkXdO3oUgY5t444/GxBYiB3nJGtMgjG','2019-03-28 09:20:20','2019-03-28 09:20:20');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+
+LOCK TABLES `products_prices` WRITE;
+/*!40000 ALTER TABLE `products_prices` DISABLE KEYS */;
+INSERT INTO `products_prices` VALUES (1,1),(2,2),(3,3),(4,4),(7,5),(9,6),(9,7);
+/*!40000 ALTER TABLE `products_prices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `products_categories` WRITE;
+/*!40000 ALTER TABLE `products_categories` DISABLE KEYS */;
+INSERT INTO `products_categories` VALUES (1,1),(2,2),(3,3),(4,4);
+/*!40000 ALTER TABLE `products_categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `products` WRITE;
+/*!40000 ALTER TABLE `products` DISABLE KEYS */;
+INSERT INTO `products` VALUES (1,'Pong','A0001',20,'2019-03-28 09:20:19','2019-03-28 09:20:19'),(2,'GameStation 5','A0002',15,'2019-03-28 09:20:19','2019-03-28 09:20:19'),(3,'AP Oman PC - Aluminum','A0003',10,'2019-03-28 09:20:19','2019-03-28 09:20:19'),(4,'Fony UHD HDR 55\" 4k TV','A0004',5,'2019-03-28 09:20:19','2019-03-28 09:20:19'),(5,'product-5c9c924ba7427','product-5c9c924ba7427-sku',22,'2019-03-28 09:22:25','2019-03-28 09:22:25'),(6,'product-5c9c92a55382e','product-5c9c92a55382e-sku',38,'2019-03-28 09:23:53','2019-03-28 09:23:53'),(7,'product-5c9c92aa43ff5','product-5c9c92aa43ff5-sku',87,'2019-03-28 09:23:58','2019-03-28 09:23:58'),(8,'product-5c9c92e8ef38a','product-5c9c92e8ef38a-sku',57,'2019-03-28 09:25:02','2019-03-28 09:25:02'),(9,'new-product-5c9c92ee839d0','new-product-5c9c92ee839d0-sku',174,'2019-03-28 09:25:07','2019-03-28 09:25:09');
+/*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+LOCK TABLES `prices` WRITE;
+/*!40000 ALTER TABLE `prices` DISABLE KEYS */;
+INSERT INTO `prices` VALUES (1,'2019-03-28 09:20:19','2019-03-28 09:20:19','USD',6999),(2,'2019-03-28 09:20:19','2019-03-28 09:20:19','USD',26999),(3,'2019-03-28 09:20:19','2019-03-28 09:20:19','USD',139999),(4,'2019-03-28 09:20:19','2019-03-28 09:20:19','USD',139999),(5,'2019-03-28 09:23:59','2019-03-28 09:23:59','USD',90),(6,'2019-03-28 09:25:07','2019-03-28 09:25:07','USD',83),(7,'2019-03-28 09:25:09','2019-03-28 09:25:09','USD',148);
+/*!40000 ALTER TABLE `prices` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES (1,'Games','2019-03-28 09:20:19','2019-03-28 09:20:19'),(2,'Games','2019-03-28 09:20:19','2019-03-28 09:20:19'),(3,'Computers','2019-03-28 09:20:19','2019-03-28 09:20:19'),(4,'TVs and Accessories','2019-03-28 09:20:19','2019-03-28 09:20:19'),(5,'something','2019-03-28 09:22:25','2019-03-28 09:22:25'),(6,'new-category','2019-03-28 09:25:09','2019-03-28 09:25:09');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
+
