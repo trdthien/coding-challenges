@@ -105,7 +105,7 @@ class ProductController extends AbstractFOSRestController
     /**
      * Deletes the Product resource
      * @Rest\Delete("/products/{productId}")
-     * @Security("has_role('ROLE_ADMIN')")
+     * @Security("has_role('ROLE_USER')")
      * @param string $productId
      * @return View
      */
